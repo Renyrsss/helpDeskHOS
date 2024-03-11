@@ -31,15 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(res);
             if(res){
                 let query ;
-
-                
+                radioInput.forEach(item=>{
+                    if(item.checked){
+                        query = item.value
+                    }
+                })
+                console.log(checkedOrNot);
                 let massage = `<b>Заявка  ${query}</b>\n`;
                 massage +=  `<b>ФИО : ${inputs[1].value}</b>\n`;
                 massage +=  `<b>Отделение : ${inputs[2].value}</b>\n`;
                 massage +=  `<b>Телефон : ${inputs[0].value}</b>\n`
                 massage += `<b>Комментарий : ${textArea.value}</b>\n`;
                 massage += `<b>Запрос : ${query}</b>\n`;
-                axios.post(`http://192.168.101.25:1338${/api/zayavkis}`,{
+                axios.post(`http://192.168.101.25:1338/api/zayavkis`,{
                     data:{
                         userName : inputs[1].value,
                         userPhone : inputs[0].value,
