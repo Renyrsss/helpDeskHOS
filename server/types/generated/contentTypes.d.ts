@@ -370,14 +370,6 @@ export interface ApiZayavkiZayavki extends Schema.CollectionType {
     displayName: '\u0437\u0430\u044F\u0432\u043A\u0438';
     description: '';
   };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
     userName: Attribute.String &
       Attribute.SetPluginOptions<{
@@ -437,7 +429,6 @@ export interface ApiZayavkiZayavki extends Schema.CollectionType {
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::zayavki.zayavki',
       'oneToOne',
@@ -450,12 +441,6 @@ export interface ApiZayavkiZayavki extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::zayavki.zayavki',
-      'oneToMany',
-      'api::zayavki.zayavki'
-    >;
-    locale: Attribute.String;
   };
 }
 
