@@ -426,7 +426,7 @@ export interface ApiZayavkiZayavki extends Schema.CollectionType {
     executor: Attribute.Enumeration<
       [
         '\u0412\u0430\u0434\u0438\u043C',
-        '\u044E\u0437\u0435\u04401',
+        '\u0414\u043C\u0438\u0442\u0440\u0438\u0439 ',
         '\u044E\u0437\u0435\u04402'
       ]
     > &
