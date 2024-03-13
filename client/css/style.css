@@ -148,6 +148,22 @@ body {
   font-weight: bold;
 }
 
+.btn__submitStyle {
+  color: white;
+  border-radius: 10px;
+  border: 2px solid white;
+  background-color: #274152;
+  font-size: 18px;
+  padding: 10px 45px;
+  transition: background-color 0.3s ease-in-out 0s, transform 0.3s ease-in-out 0s;
+  cursor: pointer;
+  margin-right: 14px;
+}
+.btn__submitStyle:hover {
+  transform: scale(1.05);
+  background-color: #151744;
+}
+
 .btn {
   display: flex;
   justify-content: center;

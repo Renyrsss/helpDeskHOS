@@ -87,6 +87,22 @@ body{
 
 
 }
+.btn__submitStyle {
+        color: #ffff;
+        border-radius: 10px;
+        border: 2px solid white;
+        background-color: #274152;
+        font-size: 18px;
+        padding: 10px 45px;
+        transition: background-color 0.3s ease-in-out 0s, transform 0.3s ease-in-out 0s;
+        cursor: pointer;
+        margin-right: 14px;
+    
+        &:hover {
+            transform: scale(1.05);
+            background-color: #151744;
+        }
+    }
 
 .btn {
     display: flex;
@@ -380,6 +396,8 @@ label{
     color: rgb(12, 100, 100);
 }
 
+
+
 @media (hover: none){
     body {
             background: url('../img/wallpapernew.jpg') center /  auto 100% no-repeat;
@@ -392,3 +410,4 @@ label{
 
         }
 }
+
