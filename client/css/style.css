@@ -399,7 +399,7 @@ textarea {
 }
 
 body {
-  background: url("../img/wallpapernew.jpg") center/100% 100% no-repeat;
+  background: url("../img/mainTheme.jpg") center/100% 100% no-repeat;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -410,11 +410,15 @@ label {
 
 @media (hover: none) {
   body {
-    background: url("../img/wallpapernew.jpg") center/auto 100% no-repeat;
+    background: url("../img/mainTheme.jpg") center/auto 100% no-repeat;
     -o-object-fit: cover;
        object-fit: cover;
   }
   .columns__row {
     display: block;
+  }
+  .main__catalogItem {
+    display: flex;
+    flex-direction: column;
   }
 }
