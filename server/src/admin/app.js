@@ -1,3 +1,5 @@
+import HelloWorldButton from "./extensions/components/HelloWolrdButton";
+
 const config = {
   locales: [
     // 'ar',
@@ -17,7 +19,7 @@ const config = {
     // 'pl',
     // 'pt-BR',
     // 'pt',
-    'ru',
+    "ru",
     // 'sk',
     // 'sv',
     // 'th',
@@ -35,5 +37,10 @@ const bootstrap = (app) => {
 
 export default {
   config,
-  bootstrap,
+  bootstrap(app) {
+    app.injectContentManagerComponent("editView", "informations", {
+      name: "HelloWorldButton",
+      Component: HelloWorldButton,
+    });
+  },
 };
