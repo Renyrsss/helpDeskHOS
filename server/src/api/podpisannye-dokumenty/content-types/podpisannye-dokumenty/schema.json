@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "podpisannye_dokumenties",
+  "info": {
+    "singularName": "podpisannye-dokumenty",
+    "pluralName": "podpisannye-dokumenties",
+    "displayName": "подписанные документы"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userName": {
+      "type": "string"
+    },
+    "useriin": {
+      "type": "string"
+    },
+    "userPhone": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "email"
+    },
+    "userDoc": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

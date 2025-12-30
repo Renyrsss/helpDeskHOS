@@ -362,88 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiZayavkiZayavki extends Schema.CollectionType {
-  collectionName: 'zayavkis';
-  info: {
-    singularName: 'zayavki';
-    pluralName: 'zayavkis';
-    displayName: '\u0437\u0430\u044F\u0432\u043A\u0438';
-    description: '';
-  };
-  attributes: {
-    userName: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    userPhone: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    userSide: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    userComment: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    userQuery: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    Progress: Attribute.Enumeration<
-      [
-        '\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430',
-        '\u0421\u0434\u0435\u043B\u0430\u043D\u043E',
-        '\u041D\u0435 \u0441\u0434\u0435\u043B\u0430\u043D\u043E',
-        '\u0412 \u0440\u0430\u0431\u043E\u0442\u0435'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430'>;
-    executor: Attribute.Enumeration<
-      [
-        '\u0412\u0430\u0434\u0438\u043C',
-        '\u0414\u043C\u0438\u0442\u0440\u0438\u0439 ',
-        '\u044E\u0437\u0435\u04402'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::zayavki.zayavki',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::zayavki.zayavki',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -914,6 +832,167 @@ export interface PluginGraphsBuilderGraph extends Schema.CollectionType {
   };
 }
 
+export interface ApiKzdKzd extends Schema.CollectionType {
+  collectionName: 'kzds';
+  info: {
+    singularName: 'kzd';
+    pluralName: 'kzds';
+    displayName: 'KZD';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    userName: Attribute.String;
+    userPhone: Attribute.String;
+    userSide: Attribute.String;
+    userComment: Attribute.Text;
+    userQuery: Attribute.String;
+    Progress: Attribute.Enumeration<
+      [
+        '\u0421\u0434\u0435\u043B\u0430\u043D\u043E',
+        '\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430',
+        '\u043D\u0435\u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430',
+        '\u0432 \u0440\u0430\u0431\u043E\u0442\u0435'
+      ]
+    > &
+      Attribute.DefaultTo<'\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430'>;
+    ourComment: Attribute.Text;
+    complexity: Attribute.Enumeration<
+      [
+        'A',
+        'B',
+        'C',
+        'D - \u0434\u043E\u043B\u0433\u043E\u0441\u0440\u043E\u0447\u043D\u044B\u0439'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::kzd.kzd', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::kzd.kzd', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPodpisannyeDokumentyPodpisannyeDokumenty
+  extends Schema.CollectionType {
+  collectionName: 'podpisannye_dokumenties';
+  info: {
+    singularName: 'podpisannye-dokumenty';
+    pluralName: 'podpisannye-dokumenties';
+    displayName: '\u043F\u043E\u0434\u043F\u0438\u0441\u0430\u043D\u043D\u044B\u0435 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    userName: Attribute.String;
+    useriin: Attribute.String;
+    userPhone: Attribute.String;
+    userEmail: Attribute.Email;
+    userDoc: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::podpisannye-dokumenty.podpisannye-dokumenty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::podpisannye-dokumenty.podpisannye-dokumenty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiZayavkiZayavki extends Schema.CollectionType {
+  collectionName: 'zayavkis';
+  info: {
+    singularName: 'zayavki';
+    pluralName: 'zayavkis';
+    displayName: '\u0437\u0430\u044F\u0432\u043A\u0438';
+    description: '';
+  };
+  attributes: {
+    userName: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    userPhone: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    userSide: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    userComment: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    userQuery: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Progress: Attribute.Enumeration<
+      [
+        '\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430',
+        '\u0421\u0434\u0435\u043B\u0430\u043D\u043E',
+        '\u041D\u0435 \u0441\u0434\u0435\u043B\u0430\u043D\u043E',
+        '\u0412 \u0440\u0430\u0431\u043E\u0442\u0435'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u041D\u043E\u0432\u0430\u044F \u0437\u0430\u044F\u0432\u043A\u0430'>;
+    executor: Attribute.Enumeration<
+      [
+        '\u0412\u0430\u0434\u0438\u043C',
+        '\u0414\u043C\u0438\u0442\u0440\u0438\u0439 ',
+        '\u044E\u0437\u0435\u04402'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::zayavki.zayavki',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::zayavki.zayavki',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -924,7 +1003,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::zayavki.zayavki': ApiZayavkiZayavki;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -934,6 +1012,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
+      'api::kzd.kzd': ApiKzdKzd;
+      'api::podpisannye-dokumenty.podpisannye-dokumenty': ApiPodpisannyeDokumentyPodpisannyeDokumenty;
+      'api::zayavki.zayavki': ApiZayavkiZayavki;
     }
   }
 }

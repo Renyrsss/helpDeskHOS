@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kzds",
+  "info": {
+    "singularName": "kzd",
+    "pluralName": "kzds",
+    "displayName": "KZD"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userName": {
+      "type": "string"
+    },
+    "userPhone": {
+      "type": "string"
+    },
+    "userSide": {
+      "type": "string"
+    },
+    "userComment": {
+      "type": "text"
+    },
+    "userQuery": {
+      "type": "string"
+    },
+    "Progress": {
+      "type": "enumeration",
+      "enum": [
+        "Сделано",
+        "Новая заявка",
+        "некорректная заявка",
+        "в работе"
+      ],
+      "default": "Новая заявка"
+    },
+    "ourComment": {
+      "type": "text"
+    },
+    "complexity": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D - долгосрочный"
+      ]
+    }
+  }
+}
