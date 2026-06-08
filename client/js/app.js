@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = "6515245927:AAExFk8USVwQ2IVcwtqszfutM-hqgbfp0Dg";
     let CHAT_ID = -4133903157;
     const URI_API = `https://api.telegram.org/bot${token}/sendMessage`;
+    const CORP_HELPDESK_LEGACY_URL =
+        "http://192.168.101.25:12010/api/tickets/legacy/submit";
     let success = document.querySelector(".success");
     let successImg = document.querySelector(".success__img");
     let checkedOrNot = document.querySelector(".checkedOrNot");
@@ -18,24 +20,40 @@ document.addEventListener("DOMContentLoaded", function () {
     let btn = document.querySelector(".btn__submit");
     // console.log(btn);
     let admin = null;
-    let serverURl = "http://192.168.101.25:1338/api/zayavkis";
+
+    function postToCorpHelpdesk(payload) {
+        return axios
+            .post(CORP_HELPDESK_LEGACY_URL, payload)
+            .then((res) => {
+                console.log("Заявка продублирована в корп-систему", res.data);
+            })
+            .catch((err) => {
+                console.warn("Не удалось продублировать заявку в корп-систему", err);
+            });
+    }
+
     btn.addEventListener("click", (e) => {
         e.preventDefault();
         let res = checkInputs(inputs, textArea, checkedOrNot, radioInput);
         console.log(res);
         if (res) {
             let query;
+            let legacyCategoryId;
+            let chatId = -4133903157;
+            let serverURl = "http://192.168.101.25:1338/api/zayavkis";
             radioInput.forEach((item) => {
                 if (item.checked) {
                     query = item.value;
+                    legacyCategoryId = item.id;
                     console.log(item.id);
 
                     if (item.id === "KZD") {
                         serverURl = "http://192.168.101.25:1338/api/kzds";
-                        CHAT_ID = -4881074518;
+                        chatId = -4881074518;
                     }
                 }
             });
+            CHAT_ID = chatId;
             console.log(checkedOrNot);
             let massage = `<b>Заявка  ${query}</b>\n`;
             massage += `<b>ФИО : ${inputs[1].value}</b>\n`;
@@ -43,18 +61,31 @@ document.addEventListener("DOMContentLoaded", function () {
             massage += `<b>Телефон : ${inputs[0].value}</b>\n`;
             massage += `<b>Комментарий : ${textArea.value}</b>\n`;
             massage += `<b>Запрос : ${query}</b>\n`;
+            const legacyPayload = {
+                userName: inputs[1].value,
+                userPhone: inputs[0].value,
+                userSide: inputs[2].value,
+                userComment: textArea.value,
+                userQuery: query,
+                legacyCategoryId,
+                legacyEndpoint: serverURl.replace("http://192.168.101.25:1338", ""),
+                serviceGroupSlug: "medical-equipment",
+                departmentKey: "MEDICAL_EQUIPMENT",
+            };
 
             const url = axios
                 .post(serverURl, {
                     data: {
-                        userName: inputs[1].value,
-                        userPhone: inputs[0].value,
-                        userSide: inputs[2].value,
-                        userComment: textArea.value,
-                        userQuery: query,
+                        userName: legacyPayload.userName,
+                        userPhone: legacyPayload.userPhone,
+                        userSide: legacyPayload.userSide,
+                        userComment: legacyPayload.userComment,
+                        userQuery: legacyPayload.userQuery,
                     },
                 })
                 .then((res) => {
+                    postToCorpHelpdesk(legacyPayload);
+
                     inputs.forEach((item) => (item.value = ""));
                     textArea.value = "";
                     success.style.display = "block";
